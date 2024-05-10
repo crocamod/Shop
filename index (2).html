@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Жаровня: кофе в зёрнах</title>
+<style>
+:root{--paper:#eef0ea;--ink:#101418;--mute:#5d666b;--blue:#2442f0;--line:#c9cfc8;--white:#fbfcf9}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--paper);color:var(--ink)}
+[hidden]{display:none!important}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 24px;border-bottom:2px solid var(--ink)}
+.bar h1{margin:0;font-size:1.9rem;letter-spacing:-.03em;font-weight:800}
+.grid{max-width:1040px;margin:0 auto;padding:28px 16px 64px;display:grid;grid-template-columns:1fr 330px;gap:36px;align-items:start}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+h2{margin:0 0 8px;font-size:1.15rem;letter-spacing:-.01em}
+ul{list-style:none;margin:0 0 32px;padding:0}
+button{font:inherit;cursor:pointer;border:2px solid var(--ink);background:var(--white);color:var(--ink);padding:6px 14px}
+button:hover:not(:disabled){background:var(--ink);color:var(--paper)}
+button:disabled{opacity:.4;cursor:not-allowed}
+button.main{background:var(--blue);border-color:var(--blue);color:#fff}
+button.main:hover:not(:disabled){background:var(--ink);border-color:var(--ink)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+input{font:inherit;width:100%;padding:9px 10px;margin:4px 0 12px;border:2px solid var(--ink);background:var(--white)}
+#products li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:16px 0;border-bottom:1px solid var(--line)}
+#products b{font-size:1.1rem;letter-spacing:-.01em}
+.sub{color:var(--mute);font-size:.92rem}
+.roast{letter-spacing:3px;font-size:.8rem}
+.price{font-weight:700;text-align:right}
+.low{color:var(--blue);font-size:.9rem}
+aside{position:sticky;top:16px;background:var(--white);border:2px solid var(--ink);padding:18px}
+#cart li{display:grid;grid-template-columns:1fr auto;gap:2px 8px;padding:8px 0;border-bottom:1px solid var(--line)}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{padding:0 9px}
+.total{display:flex;justify-content:space-between;font-weight:800;font-size:1.2rem;margin:14px 0}
+.order{padding:10px 0;border-bottom:1px solid var(--line)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+#toasts{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);display:grid;gap:8px;z-index:9}
+.toast{background:var(--ink);color:#fff;padding:10px 18px}
+</style>
+</head>
+<body>
+<header class="bar"><h1>Жаровня</h1><div class="row"><span id="who" class="sub"></span><button id="btn-logout" hidden>Выйти</button></div></header>
+<div class="grid">
+  <div>
+    <h2>Кофе в зёрнах, 250 г</h2>
+    <p class="sub">Обжарка от светлой (■) до тёмной (■■■■■).</p>
+    <ul id="products"></ul>
+    <section id="orders-box" hidden><h2>Ваши заказы</h2><ul id="orders"></ul></section>
+  </div>
+  <aside>
+    <div id="guest">
+      <h2>Войдите, чтобы купить</h2>
+      <label>Email <input id="email" type="email" autocomplete="username" maxlength="254"></label>
+      <label>Пароль, от 10 символов <input id="password" type="password" autocomplete="current-password" maxlength="128"></label>
+      <div class="row"><button class="main" id="btn-login">Войти</button><button id="btn-register">Регистрация</button></div>
+    </div>
+    <div id="cartbox" hidden>
+      <h2>Корзина</h2>
+      <ul id="cart"></ul>
+      <div class="total"><span>Итого</span><span id="total"></span></div>
+      <button class="main" id="btn-checkout">Оформить заказ</button>
+    </div>
+  </aside>
+</div>
+<div id="toasts"></div>
+<script src="/app.js"></script>
+</body>
+</html>
